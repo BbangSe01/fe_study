@@ -9,7 +9,7 @@ const getHTML = async () => {
   }
 };
 
-const parsing = async () => {
+const crowHeadlinesFromNaver = async () => {
   try {
     const html = await getHTML();
     const $ = cheerio.load(html.data);
@@ -32,4 +32,4 @@ const parsing = async () => {
   }
 };
 
-module.exports = { parsing };
+module.exports = { crowHeadlinesFromNaver };
