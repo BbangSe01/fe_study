@@ -33,25 +33,23 @@
                 const response = await fetch('http://localhost:3000/get-data');
                 const data = await response.json(); // JSON으로 직접 파싱
 
+                
                 if (Array.isArray(data)) {
                     const container = document.getElementById('news-container');
                     container.innerHTML = ''; // 초기화
 
+                    const giveDiv = (name,contents) => { // 함수 분리
+                        const div = document.createElement('div');
+                        div.className = name;
+                        div.innerText = contents;
+                        return div;
+                    }
+
                     data.forEach(item => {
-                        const newsDiv = document.createElement('div');
-                        newsDiv.className = 'newsDiv';
-
-                        const titleDiv = document.createElement('div');
-                        titleDiv.className = 'titleDiv';
-                        titleDiv.innerText = item.title;
-
-                        const preDiv = document.createElement('div');
-                        preDiv.className = 'preDiv';
-                        preDiv.innerText = item.preview;
-
-                        const whereDiv = document.createElement('div');
-                        whereDiv.className = 'whereDiv';
-                        whereDiv.innerText = item.where;
+                        const newsDiv = giveDiv('newsDiv');
+                        const titleDiv = giveDiv('titleDiv',item.title);
+                        const preDiv = giveDiv('preDiv',item.preview);
+                        const whereDiv = giveDiv('whereDiv',item.where);
 
                         newsDiv.appendChild(titleDiv);
                         newsDiv.appendChild(preDiv);
