@@ -30,6 +30,10 @@
     <script>
         async function fetchData() {
             try {
+                 // 데이터베이스를 먼저 업데이트
+                 await fetch('http://localhost:3000/push-db');
+
+                 //데이터베이스에서 최신 데이터 가져오기
                 const response = await fetch('http://localhost:3000/get-data');
                 const data = await response.json(); // JSON으로 직접 파싱
 

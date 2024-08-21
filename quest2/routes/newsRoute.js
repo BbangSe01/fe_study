@@ -10,5 +10,6 @@ router.get("/", (req, res) => {
 });
 
 router.get("/get-data", newsController.getData);
+router.get("/push-db", newsController.insertCrawledData);
 
 module.exports = router;
