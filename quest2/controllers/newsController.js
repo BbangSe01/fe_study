@@ -2,6 +2,7 @@
 const { crowHeadlinesFromNaver } = require("../naver_crolling");
 const cdb = require("../Database/crollingDb");
 
+//DB에 데이터를 삽입하는 메소드
 module.exports.insertCrawledData = async (req, res) => {
   try {
     //새로고침 시, 기존 데이터 삭제를 위한 코드
@@ -46,6 +47,7 @@ module.exports.insertCrawledData = async (req, res) => {
   }
 };
 
+// DB로부터 데이터를 받아오는 메소드
 module.exports.getData = async (req, res) => {
   try {
     // 데이터베이스에서 데이터 조회
@@ -54,7 +56,7 @@ module.exports.getData = async (req, res) => {
     cdb.query(selectQuery, (err, results, fields) => {
       if (err) {
         console.error("데이터 조회 실패: " + err.stack);
-        return res.status(500).send("데이터 조회 실패");
+        return res.status(404).send("404 NOT_FOUND");
       }
 
       // 조회된 데이터 반환
